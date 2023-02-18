@@ -4,7 +4,7 @@
 // console.log(list);
 
 
-const { readFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 //read file and return array
 function getTodos() {
    const value = readFileSync('./todos.txt')
@@ -33,6 +33,36 @@ function getTodos() {
 
 //export to cmd.js
 
+function setTodos(todos) {
+    const val = todos.join('\n');
+    writeFileSync('./todos.txt', val);
+}
+
+function addTodo(todo) {
+    const currentTodos = getTodos();
+    currentTodos.push(todo);
+    setTodos(currentTodos);
+}
+
+function deleteTodo(id) {
+    const currentTodos = getTodos();
+    const indexToRemove = id - 1;
+    currentTodos.splice(indexToRemove, 1);
+    setTodos(currentTodos);
+}
+
+function updateTodo(id, updatedTodo) {
+    const currentTodos = getTodos();
+    const indexToRemove = id - 1;
+    currentTodos.splice(indexToRemove, 1, updatedTodo);
+    setTodos(currentTodos);
+
+}
+
 module.exports = {
-    getTodos
+    getTodos,
+    setTodos,
+    addTodo,
+    deleteTodo,
+    updateTodo
 };
