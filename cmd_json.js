@@ -3,7 +3,7 @@ const { getTodos, addTodo, deleteTodo, updateTodo } = require('./todos_json.js')
 // get the todos from getTodos() and display properly to the user
 function displayTodos() {
     const todos = getTodos()
-        .map((item) => `${item.id}
+        .map((item) => `
         Id: ${item.id}
         Priority: ${item.priority}
         Title: ${item.title}
