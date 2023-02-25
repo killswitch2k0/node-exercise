@@ -12,16 +12,17 @@ function setTodos(todos) {
     writeFileSync('./data.json', value);
 }
 
-function addTodo(title) {
+function addTodo({title, description,user,isDone,category,priority,status}) {
     const currentTodos = getTodos();
     currentTodos.push({
         id: btoa(Math.random()),
         title,
-        description: '',
-        user: 'alex',
-        isDone: false,
-        category: '',
-        priority: 99
+        description,
+        user,
+        isDone,
+        category,
+        priority,
+        status
     });
     setTodos(currentTodos)
 }
@@ -32,6 +33,7 @@ function deleteTodo(id) {
     const filteredTodos = currentTodos.filter(todo => todo.id !== id);
     
     setTodos(filteredTodos)
+    return(filteredTodos)
 }
 
 function updateTodo(id, updatedTodo) {
@@ -41,6 +43,7 @@ function updateTodo(id, updatedTodo) {
     currentTodos[indexToRemove] = updatedTodo;
 
     setTodos(currentTodos)
+    return(currentTodos)
 }
 
 module.exports = {

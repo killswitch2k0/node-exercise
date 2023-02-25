@@ -1,4 +1,4 @@
-const { getTodos, addTodo, deleteTodo, updateTodo } = require('./todos_json.js');
+const { getTodos, addTodo, deleteTodo, updateTodo } = require('./services/todos_json.js');
 
 // get the todos from getTodos() and display properly to the user
 function displayTodos() {
@@ -10,6 +10,7 @@ function displayTodos() {
         Description: ${item.description}
         User: ${item.user}
         Category: ${item.category}
+        status: ${item.status}
         Done? ${item.isDone ? 'Yes' : 'No'}`)
         .join('\n\n')
 
