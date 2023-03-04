@@ -2,8 +2,9 @@
 const todosServices = require('../services/todos_json');
 
 //invoke the getTodos in the func of the same name in controller
-function getTodos (req, res) {
-    const todos = todosServices.getTodos();
+async function getTodos (req, res) {
+    const user = req.user;
+    const todos = await todosServices.getTodos(user.id);
     res.json(todos);
 }
 

@@ -7,6 +7,10 @@ function getTodos() {
     return value;
 }
 
+function getTodosByUser () {
+
+}
+
 function setTodos(todos) {
     const value = JSON.stringify(todos);
     writeFileSync('./data.json', value);
@@ -36,7 +40,7 @@ function deleteTodo(id) {
     return(filteredTodos)
 }
 
-function updateTodo(id, updatedTodo) {
+function updateTodo(id, updatedTodoc) {
     const currentTodos = getTodos();
 
     const indexToRemove = id - 1;

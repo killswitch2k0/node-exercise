@@ -4,14 +4,18 @@ const router = require('express').Router();
 
 //import the funcs from controller file
 const todosController = require('../controller/todos-controller')
+const {verifyUser} = require('middlewares\auth.middleware.js');
+const {verifyIfAdmin} = require('middlewares\auth.middleware.js');
+
 
 //run the todosController with http methods
-router.get('/api/todos', todosController.getTodos);
 
-router.post('/api/todos/', todosController.createTodo);
+router.get('/api/todos', verifyUser, verifyIfAdmin, todosController.getTodos);
 
-router.delete('/api/todos/:todoId', todosController.removeTodo);
+router.post('/api/todos/', verifyUser, verifyIfAdmin, todosController.createTodo);
 
-router.put('/api/todos/:todoId', todosController.updateTodo);
+router.delete('/api/todos/:todoId', verifyUser, verifyIfAdmin, todosController.removeTodo);
+
+router.put('/api/todos/:todoId', verifyUser, verifyIfAdmin, todosController.updateTodo);
 
 module.exports = router;
